@@ -54,15 +54,22 @@ function setPos() {
 }
 */
 
-  let divBoard = [];
-  for (let i = 0; i < rows; i++) {
-    let row = [];
-    for (let j = 0; j < column; j++) {
-      let div = document.createElement('div');
-      divBoard.push(div);
-      console.log(divBoard)
-    }
+
+//Tablica z Div
+let divBoard = [];
+
+for (let i = 0; i < rows; i++) {
+  let row = []; 
+  for (let j = 0; j < column; j++) {
+    let div = document.createElement('div');
+    row.push(div); 
+  }
+  divBoard.push(row); 
 }
+
+console.log(divBoard);
+
+
 /*
   function createDiv() {
     for (let i = 0; i < 30; i++) {
