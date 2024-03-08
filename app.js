@@ -57,27 +57,25 @@ function setPos() {
 
 //Tablica z Div
 function pressStart(){
-let divBoard = [];
+  let divBoard = [];
 
-for (let i = 0; i < rows; i++) {
-  let row = []; 
-  for (let j = 0; j < column; j++) {
-    let div = document.createElement('div');
-    div.classList.add('class');
+  for (let i = 0; i < rows; i++) {
+    let row = document.createElement('div'); 
+    row.classList.add('row'); 
+    for (let j = 0; j < column; j++) {
+      let div = document.createElement('div');
+      div.classList.add('class');
       div.style.border = '1px solid black';
       div.style.width = '20px';
       div.style.height = '20px';
       div.style.backgroundColor = 'black';
-      board.appendChild(div);
-    row.push(div); 
+      row.appendChild(div); 
+    }
+    board.appendChild(row); 
+    divBoard.push(row); 
   }
-  divBoard.push(row); 
-  
-  let br = document.createElement('br');
-    board.appendChild(br);
-}
 
-console.log(divBoard);
+  console.log(divBoard);
 }
 
 /*
@@ -109,7 +107,3 @@ console.log(divBoard);
   }
 */
 start.addEventListener('click',pressStart);
-
-
-
-
