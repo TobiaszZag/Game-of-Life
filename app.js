@@ -62,9 +62,16 @@ for (let i = 0; i < rows; i++) {
   let row = []; 
   for (let j = 0; j < column; j++) {
     let div = document.createElement('div');
+    div.classList.add('class');
+      div.style.border = '1px solid black';
+      div.style.width = '20px';
+      div.style.height = '20px';
+      div.style.backgroundColor = 'black';
+      board.appendChild(div);
     row.push(div); 
   }
   divBoard.push(row); 
+  
 }
 
 console.log(divBoard);
