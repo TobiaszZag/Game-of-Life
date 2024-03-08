@@ -56,6 +56,7 @@ function setPos() {
 
 
 //Tablica z Div
+function pressStart(){
 let divBoard = [];
 
 for (let i = 0; i < rows; i++) {
@@ -75,7 +76,7 @@ for (let i = 0; i < rows; i++) {
 }
 
 console.log(divBoard);
-
+}
 
 /*
   function createDiv() {
@@ -104,9 +105,9 @@ console.log(divBoard);
     }
     document.querySelector(".board").innerHTML = writing;
   }
-
-start.addEventListener('click',pressStart);
-start.addEventListener('click',createDiv);
-
-
 */
+start.addEventListener('click',pressStart);
+
+
+
+
