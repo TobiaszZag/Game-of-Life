@@ -11,14 +11,18 @@
    Base styles: opinionated defaults
    ========================================================================== */
    .row {
-    display: flex; 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
   }
-  
-html {
-  color: #222;
-  font-size: 1em;
-  line-height: 1.4;
-}
+
+  html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+  }
 
 /*
  * Remove text-shadow in selection highlight:
