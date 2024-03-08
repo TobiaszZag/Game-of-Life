@@ -73,6 +73,8 @@ for (let i = 0; i < rows; i++) {
   }
   divBoard.push(row); 
   
+  let br = document.createElement('br');
+    board.appendChild(br);
 }
 
 console.log(divBoard);
