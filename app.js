@@ -21,6 +21,10 @@ function stopInt(){
    clearInterval(Interval)
 }
 
+function resetBoard(){
+  board.innerHTML = '';
+}
+
 
 
 
@@ -37,7 +41,7 @@ function pressStart(){
       div.style.border = '1px solid black';
       div.style.width = '20px';
       div.style.height = '20px';
-      div.style.backgroundColor = Math.random() < 0.7 ? 'white': 'black';  //czarna żywa
+      div.style.backgroundColor = Math.random() < 0.7 ? 0: "black";  //czarna żywa
       div.style.margin = '2px';
       row.appendChild(div);
       board.appendChild(row);
@@ -49,26 +53,35 @@ function pressStart(){
   }
 
   console.log(divBoard);
-  sprawdzenieSasiadow()
 }
 
 
-function sprawdzenieSasiadow() {
-  let tablicaSasiadow = [];
 
-  for (let i = 0; i < divBoard.length; i++) {
 
+//Sprawdzenie sąsiadów
+function countNeighbors(x, y) {
+  let count = 0;
+  const rows = divBoard.length;
+  const columns = divBoard.length;
+
+  for (let i = -1; i <= 1; i++) {
+    for (let j = -1; j <= 1; j++) {
+      const neighborX = x + i;
+      const neighborY = y + j;
+      if (i === 0 && j === 0) continue;
+      if (neighborX >= 0 && neighborX < rows && neighborY >= 0 && neighborY < columns) {
+        count += divBoard[neighborX][neighborY] ? 1 : 0;
+      }
+    }
   }
-
-
-  console.log(tablicaSasiadow);
+  console.log("Liczba sąsiadów (" + x + ", " + y + "): " + count);
 }
-
 
 start.addEventListener('click',pressStart);
-//start.addEventListener('click',sprawdzenieSasiadow);
+start.addEventListener('click',countNeighbors);
 start.addEventListener('click',startInt);
-stop.addEventListener('click',stopInt)
+stop.addEventListener('click',stopInt);
+reset.addEventListener('click',resetBoard);
 
 
 
