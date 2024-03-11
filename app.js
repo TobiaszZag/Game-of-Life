@@ -51,7 +51,7 @@ function stopInt(){
 function pressStart(){
   let divBoard = [];
   for (let i = 0; i < rows; i++) {
-    let row = document.createElement('div'); 
+    let row = document.createElement('div');
     row.classList.add('row');
     for (let j = 0; j < column; j++) {
       let div = document.createElement('div');
@@ -60,13 +60,13 @@ function pressStart(){
       div.style.width = '20px';
       div.style.height = '20px';
       div.style.backgroundColor = Math.random() < 0.7 ? 'white': 'black';  //czarna żywa
-      if(div.style.backgroundColor === 'black'){
-        console.log("czarny")
-      }
-      div.style.margin = '2px'; 
-      row.appendChild(div); 
+      div.style.margin = '2px';
+      row.appendChild(div);
+     /* if (div.style.backgroundColor === 'black') {
+        divBoard[0][0] = div.style.backgroundColor === "blue";
+      }*/
     }
-    board.appendChild(row); 
+    board.appendChild(row);
     divBoard.push(row);
 
   }
@@ -76,5 +76,5 @@ function pressStart(){
 }
 
 start.addEventListener('click',pressStart);
-start.addEventListener('click',startInt);
+//start.addEventListener('click',startInt);
 //stop.addEventListener('click',stopInt)
