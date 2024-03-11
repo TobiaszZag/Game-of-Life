@@ -1,8 +1,5 @@
 //debugger;
 
-
-
-let writing = '';
 /*let row = prompt("Podaj ilość wierszy");
 let column = prompt("Podaj ilość column");*/
 
@@ -65,33 +62,4 @@ function pressStart(){
   console.log(divBoard);
 }
 
-
-/*
-  function createDiv() {
-    for (let i = 0; i < 30; i++) {
-      let div = document.createElement('div');
-      let divArray = [[]];
-      divArray.push(div);
-      div.innerHTML = "div";
-      div.classList.add('class');
-      div.style.border = '1px solid black';
-      div.style.width = '20px';
-      div.style.height = '20px';
-      div.style.backgroundColor = 'black';
-      board.appendChild(div);
-
-    }
-  }
-
-//Create board
-  function pressStart(divArray) {
-    for (let i = 0; i < rows; i++) {
-      for (let j = 0; j < column; j++) {
-      }
-      writing += divArray + '<br>';
-
-    }
-    document.querySelector(".board").innerHTML = writing;
-  }
-*/
 start.addEventListener('click',pressStart);
