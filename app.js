@@ -74,6 +74,7 @@ function countNeighbors(x,y) {
 }
 
 
+
 //Aktualizuje plasze
 function updateBoardState() {
 
@@ -84,13 +85,11 @@ function startGame() {
 
 }
 
-
 start.addEventListener('click',pressStart);
 start.addEventListener('click',countNeighbors);
 //start.addEventListener('click',startInt);
 //stop.addEventListener('click',stopInt);
 //reset.addEventListener('click',resetBoard);
-
 
 
 
