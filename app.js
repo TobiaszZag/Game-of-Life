@@ -4,27 +4,27 @@
 let column = prompt("Podaj ilość column");*/
 
 let rows =10;
-let column =10;
+let columns =10;
 
+let divy = document.querySelector(".class")
 let start = document.querySelector(".start");
 let board = document.querySelector(".board");
 let reset = document.querySelector(".reset");
 let stop = document.querySelector(".stop");
 let divBoard = [];
 let Interval = "";
-
+/*
 function startInt() {
-  Interval= setInterval(pressStart, 1000)
+  Interval= setInterval(To jest zlepressStart, 1000)
 }
 
 function stopInt(){
    clearInterval(Interval)
 }
-
 function resetBoard(){
   board.innerHTML = '';
 }
-
+*/
 
 
 
@@ -35,13 +35,14 @@ function pressStart(){
   for (let i = 0; i < rows; i++) {
     let row = document.createElement('div');
     row.classList.add('row');
-    for (let j = 0; j < column; j++) {
+    for (let j = 0; j < columns; j++) {
       let div = document.createElement('div');
       div.classList.add('class');
       div.style.border = '1px solid black';
       div.style.width = '20px';
       div.style.height = '20px';
-      div.style.backgroundColor = Math.random() < 0.7 ? 0: "black";  //czarna żywa
+      //divy[1][3].style.backgroundColor ="blue";
+      div.style.backgroundColor = "white" //Math.random() < 0.7 ? 0: "black";  //czarna żywa
       div.style.margin = '2px';
       row.appendChild(div);
       board.appendChild(row);
@@ -59,18 +60,16 @@ function pressStart(){
 
 
 //Sprawdzenie sąsiadów
-function countNeighbors(x, y) {
-  let count = 0;
-  const rows = divBoard.length;
-  const columns = divBoard.length;
-
+function countNeighbors(x,y) {
+  let board = [];
+  let count =0;
   for (let i = -1; i <= 1; i++) {
     for (let j = -1; j <= 1; j++) {
       const neighborX = x + i;
       const neighborY = y + j;
       if (i === 0 && j === 0) continue;
       if (neighborX >= 0 && neighborX < rows && neighborY >= 0 && neighborY < columns) {
-        count += divBoard[neighborX][neighborY] ? 1 : 0;
+        count += board[neighborX][neighborY] ? 1 : 0;
       }
     }
   }
@@ -79,9 +78,9 @@ function countNeighbors(x, y) {
 
 start.addEventListener('click',pressStart);
 start.addEventListener('click',countNeighbors);
-start.addEventListener('click',startInt);
-stop.addEventListener('click',stopInt);
-reset.addEventListener('click',resetBoard);
+//start.addEventListener('click',startInt);
+//stop.addEventListener('click',stopInt);
+//reset.addEventListener('click',resetBoard);
 
 
 
