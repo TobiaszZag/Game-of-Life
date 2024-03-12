@@ -12,36 +12,40 @@ let reset = document.querySelector(".reset");
 let stop = document.querySelector(".stop");
 let divBoard = [];
 let Interval = "";
-/*
-function startInt() {
-  Interval= setInterval(To jest zlepressStart, 1000)
-}
 
-function stopInt(){
-   clearInterval(Interval)
-}
-function resetBoard(){
-  board.innerHTML = '';
+
+//Aktualizuje plasze
+/*function updateBoardState() {
+  let newBoardUpdate = []
+
+  for (let y = 0; y < rows; y++) {
+    newBoardUpdate.push([]);
+    for (let x = 0; x < columns; x++) {
+      const div = divBoard[y][x];
+    }
+  }
 }
 */
 
-//Aktualizuje plasze
-function updateBoardState() {
 
-}
 
 //Rozpoczyna gre
 function startGame() {
+  /*
+  function startInt() {
+    Interval= setInterval(To jest zlepressStart, 1000)
+  }
+
+  function stopInt(){
+     clearInterval(Interval)
+  }
+  function resetBoard(){
+    board.innerHTML = '';
+  }
+  */
 
 }
-  // [
-  //   [0,0,0,0,0,0,0,0,0],
-  //   [0,0,0,0,0,0,0,0,0],
-  //   [0,0,0,0,0,0,0,0,0],
-  //   [0,0,0,0,0,0,0,0,0],
-  //   [0,0,0,0,0,0,0,0,0],
-  //   [0,0,0,0,0,0,0,0,0],
-  // ]
+
 
 
 
@@ -71,7 +75,7 @@ function pressStart() {
   console.log(divBoard);
 }
 
-function countNeighbors(x, y, board) {
+function countNeighbors(x, y) {
   let liveNeighbors = 0;
   for (let i = -1; i <= 1; i++) {
     for (let j = -1; j <= 1; j++) {
@@ -111,6 +115,8 @@ start.addEventListener('click', function () {
       countNeighbors(x, y, newBoard);
     }
   }
+
+
 });
 
 //start.addEventListener('click',startInt);
