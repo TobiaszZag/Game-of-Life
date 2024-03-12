@@ -6,7 +6,6 @@ let column = prompt("Podaj ilość column");*/
 let rows =10;
 let columns =10;
 
-let divy = document.querySelector(".class")
 let start = document.querySelector(".start");
 let board = document.querySelector(".board");
 let reset = document.querySelector(".reset");
@@ -26,11 +25,27 @@ function resetBoard(){
 }
 */
 
+//Aktualizuje plasze
+function updateBoardState() {
+
+}
+
+//Rozpoczyna gre
+function startGame() {
+
+}
+  // [
+  //   [0,0,0,0,0,0,0,0,0],
+  //   [0,0,0,0,0,0,0,0,0],
+  //   [0,0,0,0,0,0,0,0,0],
+  //   [0,0,0,0,0,0,0,0,0],
+  //   [0,0,0,0,0,0,0,0,0],
+  //   [0,0,0,0,0,0,0,0,0],
+  // ]
 
 
-//Tablica z Div
-function pressStart(){
 
+function pressStart() {
   board.innerHTML = '';
   for (let i = 0; i < rows; i++) {
     let row = document.createElement('div');
@@ -41,91 +56,62 @@ function pressStart(){
       div.style.border = '1px solid black';
       div.style.width = '20px';
       div.style.height = '20px';
-      div.style.backgroundColor = Math.random() < 0.7 ? 0: "black";
-      if(div.style.backgroundColor === "black"){
-        div.classList.add("zywa")
-      }//czarna żywa
-      else{
-        div.classList.add("niezywa")
+      div.style.backgroundColor = Math.random() < 0.7 ? 0 : 'black'; //czarna zywa
+      if (div.style.backgroundColor === 'black') {
+        div.classList.add('zywa');
+      } else {
+        div.classList.add('niezywa');
       }
       div.style.margin = '2px';
       row.appendChild(div);
-      board.appendChild(row);
-      divBoard[i].push(row);
+      divBoard[i].push(div);
     }
     board.appendChild(row);
-
-
   }
-
   console.log(divBoard);
 }
 
-
-//Sprawdzenie sąsiadów
-function countNeighbors(x,y, board,div) {
-
-  //let board = [];
-  let count =0;
-  let liveNeighbord = 0;
+function countNeighbors(x, y, board) {
+  let liveNeighbors = 0;
   for (let i = -1; i <= 1; i++) {
     for (let j = -1; j <= 1; j++) {
       const neighborX = x + i;
       const neighborY = y + j;
-      if (i === 0 && j === 0) continue; //Dzieki niej sprawdzamy sasiadow danej komorki
-      if (neighborX >= 0 && neighborX < rows && neighborY >= 0 && neighborY < columns) {
-        count += board[neighborX][neighborY] ? 1 : 0;
-        board[y][x] += divBoard[neighborX][neighborY] ? 1 : 0;
+      if (i === 0 && j === 0) continue; // pomija komorke
+      if (neighborX >= 0 && neighborX < columns && neighborY >= 0 && neighborY < rows) {
+        const neighborDiv = divBoard[neighborY][neighborX];
+        if (neighborDiv.classList.contains('zywa')) {
+          liveNeighbors++;
+        }
       }
     }
   }
-  console.log("Liczba sąsiadów (" + x + ", " + y + "): " + count);
+  console.log("Liczba sąsiadów (" + x + ", " + y + "): " + liveNeighbors);
 }
 
-
-
-//Aktualizuje plasze
-function updateBoardState() {
-
-}
-
-//Rozpoczyna gre
-function startGame() {
-
-}
-
-start.addEventListener('click',pressStart);
-start.addEventListener('click',function () {
+start.addEventListener('click', pressStart);
+start.addEventListener('click', function () {
   let newBoard = [];
   for (let y = 0; y < rows; y++) {
     newBoard.push([]);
     for (let x = 0; x < columns; x++) {
-      newBoard[y].push([]);
+      const div = divBoard[y][x];
+      if (div.classList.contains('zywa')) {
+        newBoard[y][x] = 1;
+      } else {
+        newBoard[y][x] = 0;
+      }
     }
-    console.log(newBoard)
   }
 
-
-
-  // [
-  //   [0,0,0,0,0,0,0,0,0],
-  //   [0,0,0,0,0,0,0,0,0],
-  //   [0,0,0,0,0,0,0,0,0],
-  //   [0,0,0,0,0,0,0,0,0],
-  //   [0,0,0,0,0,0,0,0,0],
-  //   [0,0,0,0,0,0,0,0,0],
-  // ]
-
-//Wyciaganie x i y
-  debugger
-  for (let y = 0; y < divBoard.length; y++) {
-    for (let x = 0; x < rows; x++) {
+  //wyciaganie x i y
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < columns; x++) {
       console.log("x:", x, "y:", y);
-      countNeighbors(x,y, newBoard)
+      countNeighbors(x, y, newBoard);
     }
   }
-})
-
+});
 
 //start.addEventListener('click',startInt);
 //stop.addEventListener('click',stopInt);
