@@ -28,7 +28,7 @@ function resetBoard(){
 
 
 
-//Tablica z Div 
+//Tablica z Div
 function pressStart(){
 
   board.innerHTML = '';
@@ -56,9 +56,11 @@ function pressStart(){
 }
 
 
-//Sprawdzenie sąsiadów 
-function countNeighbors(x,y) {
-  let board = [];
+//Sprawdzenie sąsiadów
+function countNeighbors(x,y, board) {
+  //debugger
+
+  //let board = [];
   let count =0;
   for (let i = -1; i <= 1; i++) {
     for (let j = -1; j <= 1; j++) {
@@ -66,7 +68,8 @@ function countNeighbors(x,y) {
       const neighborY = y + j;
       if (i === 0 && j === 0) continue; //Dzieki niej sprawdzamy sasiadow danej komorki
       if (neighborX >= 0 && neighborX < rows && neighborY >= 0 && neighborY < columns) {
-        count += board[neighborX][neighborY] ? 1 : 0;
+        // count += board[neighborX][neighborY] ? 1 : 0;
+        board[y][x] += board[neighborX][neighborY] ? 1 : 0;
       }
     }
   }
@@ -86,10 +89,41 @@ function startGame() {
 }
 
 start.addEventListener('click',pressStart);
-start.addEventListener('click',countNeighbors);
+start.addEventListener('click',function () {
+  let newBoard = [];
+
+  for (let y = 0; y < rows; y++) {
+    newBoard.push([]);
+    for (let x = 0; x < columns; x++) {
+      newBoard[y].push([]);
+    }
+    console.log(newBoard)
+  }
+
+
+  //debugger;
+
+  // [
+  //   [0,0,0,0,0,0,0,0,0],
+  //   [0,0,0,0,0,0,0,0,0],
+  //   [0,0,0,0,0,0,0,0,0],
+  //   [0,0,0,0,0,0,0,0,0],
+  //   [0,0,0,0,0,0,0,0,0],
+  //   [0,0,0,0,0,0,0,0,0],
+  // ]
+
+//Wyciaganie x i y
+
+  for (let y = 0; y < divBoard.length; y++) {
+    for (let x = 0; x < divBoard[y].length; x++) {
+      console.log("x:", x, "y:", y);
+    }
+  }
+})
+
+
 //start.addEventListener('click',startInt);
 //stop.addEventListener('click',stopInt);
 //reset.addEventListener('click',resetBoard);
-
 
 
