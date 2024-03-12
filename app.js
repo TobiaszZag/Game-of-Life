@@ -35,17 +35,23 @@ function pressStart(){
   for (let i = 0; i < rows; i++) {
     let row = document.createElement('div');
     row.classList.add('row');
+    divBoard.push([]);
     for (let j = 0; j < columns; j++) {
       let div = document.createElement('div');
-      div.classList.add('class');
       div.style.border = '1px solid black';
       div.style.width = '20px';
       div.style.height = '20px';
-      div.style.backgroundColor = Math.random() < 0.7 ? 0: "black";  //czarna żywa
+      div.style.backgroundColor = Math.random() < 0.7 ? 0: "black";
+      if(div.style.backgroundColor === "black"){
+        div.classList.add("zywa")
+      }//czarna żywa
+      else{
+        div.classList.add("niezywa")
+      }
       div.style.margin = '2px';
       row.appendChild(div);
       board.appendChild(row);
-      divBoard.push(row);
+      divBoard[i].push(row);
     }
     board.appendChild(row);
 
@@ -58,7 +64,6 @@ function pressStart(){
 
 //Sprawdzenie sąsiadów
 function countNeighbors(x,y, board) {
-  //debugger
 
   //let board = [];
   let count =0;
@@ -68,8 +73,8 @@ function countNeighbors(x,y, board) {
       const neighborY = y + j;
       if (i === 0 && j === 0) continue; //Dzieki niej sprawdzamy sasiadow danej komorki
       if (neighborX >= 0 && neighborX < rows && neighborY >= 0 && neighborY < columns) {
-        // count += board[neighborX][neighborY] ? 1 : 0;
-        board[y][x] += board[neighborX][neighborY] ? 1 : 0;
+        count += board[neighborX][neighborY] ? 1 : 0;
+        board[y][x] += divBoard[neighborX][neighborY] ? 1 : 0;
       }
     }
   }
@@ -91,7 +96,6 @@ function startGame() {
 start.addEventListener('click',pressStart);
 start.addEventListener('click',function () {
   let newBoard = [];
-
   for (let y = 0; y < rows; y++) {
     newBoard.push([]);
     for (let x = 0; x < columns; x++) {
@@ -101,7 +105,6 @@ start.addEventListener('click',function () {
   }
 
 
-  //debugger;
 
   // [
   //   [0,0,0,0,0,0,0,0,0],
@@ -113,10 +116,11 @@ start.addEventListener('click',function () {
   // ]
 
 //Wyciaganie x i y
-
+  debugger
   for (let y = 0; y < divBoard.length; y++) {
-    for (let x = 0; x < divBoard[y].length; x++) {
+    for (let x = 0; x < rows; x++) {
       console.log("x:", x, "y:", y);
+      countNeighbors(x,y, newBoard)
     }
   }
 })
