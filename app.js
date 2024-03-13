@@ -50,9 +50,12 @@ function updateBoardState() {
 
 //Rozpoczyna gre
 function startGame() {
-  clearInterval(intervalId);
-  pressStart();
+  pressStart()
   intervalId = setInterval(updateBoardState, 1000);
+}
+
+function stopGame(){
+  clearInterval(intervalId);
 }
 
 
@@ -68,7 +71,15 @@ function pressStart() {
       div.style.border = '1px solid black';
       div.style.width = '20px';
       div.style.height = '20px';
-      div.style.backgroundColor = Math.random() < 0.7 ? 'black' : 0;
+
+
+/* Nie pewne zmiany
+      let newClass = ""
+      newClass.classList.add = Math.random() < 0.6 ? 'zywa' : 'niezywa';
+*/
+
+
+      div.style.backgroundColor = Math.random() < 0.6 ? 'black' : 0;
       if (div.style.backgroundColor === 'black') {
         div.classList.add('zywa');
       } else {
@@ -81,7 +92,7 @@ function pressStart() {
     board.appendChild(row);
   }
 }
-
+//Zlicza sąsiadów
 function countNeighbors(x, y) {
   let liveNeighbors = 0;
   for (let i = -1; i <= 1; i++) {
@@ -103,6 +114,5 @@ function countNeighbors(x, y) {
 
 
 start.addEventListener('click', startGame);
-//start.addEventListener('click',stopGame);
-//stop.addEventListener('click',stopInt);
+stop.addEventListener('click',stopGame);
 //reset.addEventListener('click',resetBoard);
