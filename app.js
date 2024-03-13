@@ -25,12 +25,12 @@ function updateBoardState() {
       const liveNeighbors = countNeighbors(x, y);
 
 
-      if (isAlive && (liveNeighbors === 3 || liveNeighbors === 2)) {
-        newBoardUpdate[y][x] = 1;
-      } else if (!isAlive && liveNeighbors === 3) {
-        newBoardUpdate[y][x] = 1;
-      } else {
+      if (isAlive && (liveNeighbors < 2 || liveNeighbors > 3)) {
         newBoardUpdate[y][x] = 0;
+      } else if (!isAlive && liveNeighbors === 3) {
+        newBoardUpdate[y][x] = 1; 
+      } else {
+        newBoardUpdate[y][x] = isAlive ? 1 : 0;
       }
     }
   }
@@ -43,6 +43,7 @@ function updateBoardState() {
         div.classList.add('zywa');
       } else {
         div.classList.remove('zywa');
+        div.classList.add('niezywa');
       }
     }
   }
@@ -73,18 +74,16 @@ function pressStart() {
       div.style.height = '20px';
 
 
-/* Nie pewne zmiany
-      let newClass = ""
-      newClass.classList.add = Math.random() < 0.6 ? 'zywa' : 'niezywa';
-*/
+      let newClass = Math.random() < 0.6 ? 'zywa' : 'niezywa';
+      div.classList.add(newClass);
 
 
-      div.style.backgroundColor = Math.random() < 0.6 ? 'black' : 0;
+     /* div.style.backgroundColor = Math.random() < 0.6 ? 'black' : 0;
       if (div.style.backgroundColor === 'black') {
         div.classList.add('zywa');
       } else {
         div.classList.add('niezywa');
-      }
+      }*/
       div.style.margin = '2px';
       row.appendChild(div);
       divBoard[i].push(div);
