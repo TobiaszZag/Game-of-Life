@@ -15,27 +15,24 @@ let Interval = "";
 
 
 //Aktualizuje plasze
-function updateBoardState() {
+function updateBoardState(y,x) {
   let newBoardUpdate = []
-
   for (let y = 0; y < rows; y++) {
     newBoardUpdate.push([]);
     for (let x = 0; x < columns; x++) {
       const div = divBoard[y][x];
       const isAlive = div.classList.contains('zywa');
-      const liveNeibords = countNeighbors(x,y);
+      const liveNeighbors = countNeighbors(x, y);
 
-      if(isAlive && (liveNeibords ===  3 || liveNeibords === 2)){
-        newBoardUpdate[y][x] = 1;
-      }
-      else{
-        newBoardUpdate[y][x] = 0;
+      if (isAlive && (liveNeighbors === 3 || liveNeighbors === 2)) {
+        newBoardUpdate[y][x] === 1;
+      } else {
+        newBoardUpdate[y][x] === 0;
       }
 
-      if(!isAlive && (liveNeibords ===  3)){
+      if (!isAlive && (liveNeighbors === 3)) {
         newBoardUpdate[y][x] = 1
-      }
-      else
+      } else
         newBoardUpdate[y][x] = 0
     }
 
@@ -51,21 +48,20 @@ function updateBoardState() {
         }
       }
 
-      }
     }
-
-
+  }
 }
 
-
-
-
 //Rozpoczyna gre
-function startGame() {
+/*function startGame() {
     Interval= setInterval(updateBoardState, 1000)
 }
 
+function stopGame(){
+  clearInterval(Interval);
+}
 
+*/
 
 
 function pressStart() {
@@ -91,16 +87,16 @@ function pressStart() {
     }
     board.appendChild(row);
   }
-  console.log(divBoard);
+
 }
 
-function countNeighbors(x, y) {
+function countNeighbors(x, y, board) {
   let liveNeighbors = 0;
   for (let i = -1; i <= 1; i++) {
     for (let j = -1; j <= 1; j++) {
       const neighborX = x + i;
       const neighborY = y + j;
-      if (i === 0 && j === 0) continue; // pomija komorke
+      if (i === 0 && j === 0) continue; // Pomijamy bieżącą komórkę
       if (neighborX >= 0 && neighborX < columns && neighborY >= 0 && neighborY < rows) {
         const neighborDiv = divBoard[neighborY][neighborX];
         if (neighborDiv.classList.contains('zywa')) {
@@ -110,8 +106,12 @@ function countNeighbors(x, y) {
     }
   }
   console.log("Liczba sąsiadów (" + x + ", " + y + "): " + liveNeighbors);
+  return liveNeighbors;
 }
 
+
+
+start.addEventListener('click', pressStart);
 start.addEventListener('click', function () {
   let newBoard = [];
   for (let y = 0; y < rows; y++) {
@@ -133,11 +133,11 @@ start.addEventListener('click', function () {
       countNeighbors(x, y, newBoard);
     }
   }
-
-
 });
-start.addEventListener('click', pressStart);
-//start.addEventListener('click',startInt);
+
+
+start.addEventListener('click', updateBoardState);
+//start.addEventListener('click',stopGame);
 //stop.addEventListener('click',stopInt);
 //reset.addEventListener('click',resetBoard);
 
