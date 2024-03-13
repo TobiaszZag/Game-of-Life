@@ -1,13 +1,18 @@
 //debugger;
 
+/*let row = prompt("Podaj ilość wierszy");
+let column = prompt("Podaj ilość column");*/
+
+
 let rows = 10;
 let columns = 10;
+let intervalId = null;
+
 
 let start = document.querySelector(".start");
+let stop = document.querySelector(".stop");
 let board = document.querySelector(".board");
 let divBoard = [];
-
-
 
 //Aktualizuje plasze
 function updateBoardState() {
@@ -30,6 +35,7 @@ function updateBoardState() {
     }
   }
 
+
   for (let y = 0; y < rows; y++) {
     for (let x = 0; x < columns; x++) {
       const div = divBoard[y][x];
@@ -38,27 +44,21 @@ function updateBoardState() {
       } else {
         div.classList.remove('zywa');
       }
-      }
-
     }
-
+  }
 }
 
 //Rozpoczyna gre
 function startGame() {
-    Interval= setInterval(updateBoardState, 1000)
+  clearInterval(intervalId);
+  pressStart();
+  intervalId = setInterval(updateBoardState, 1000);
 }
-
-function stopGame(){
-  clearInterval(Interval);
-}
-
-
 
 
 function pressStart() {
   board.innerHTML = '';
-  divBoard = []; // Resetowanie tablicy divBoard
+  divBoard = [];
   for (let i = 0; i < rows; i++) {
     let row = document.createElement('div');
     row.classList.add('row');
@@ -68,7 +68,7 @@ function pressStart() {
       div.style.border = '1px solid black';
       div.style.width = '20px';
       div.style.height = '20px';
-      div.style.backgroundColor = Math.random() < 0.7 ? 0 : 'black'; // czarna zywa
+      div.style.backgroundColor = Math.random() < 0.7 ? 'black' : 0;
       if (div.style.backgroundColor === 'black') {
         div.classList.add('zywa');
       } else {
@@ -80,7 +80,6 @@ function pressStart() {
     }
     board.appendChild(row);
   }
-
 }
 
 function countNeighbors(x, y) {
@@ -89,7 +88,7 @@ function countNeighbors(x, y) {
     for (let j = -1; j <= 1; j++) {
       const neighborX = x + i;
       const neighborY = y + j;
-      if (i === 0 && j === 0) continue; // Pomijamy bieżącą komórkę
+      if (i === 0 && j === 0) continue;// Pomijamy bieżącą komórkę
       if (neighborX >= 0 && neighborX < columns && neighborY >= 0 && neighborY < rows) {
         const neighborDiv = divBoard[neighborY][neighborX];
         if (neighborDiv.classList.contains('zywa')) {
@@ -103,35 +102,7 @@ function countNeighbors(x, y) {
 }
 
 
-start.addEventListener('click', pressStart);
-start.addEventListener('click', function () {
-  let newBoard = [];
-  for (let y = 0; y < rows; y++) {
-    newBoard.push([]);
-    for (let x = 0; x < columns; x++) {
-      const div = divBoard[y][x];
-      if (div.classList.contains('zywa')) {
-        newBoard[y][x] = 1;
-      } else {
-        newBoard[y][x] = 0;
-      }
-      
-    }
-  }
-
-  //wyciaganie x i y
-  for (let y = 0; y < rows; y++) {
-    for (let x = 0; x < columns; x++) {
-      console.log("x:", x, "y:", y);
-      countNeighbors(x, y, newBoard);
-    }
-  }
-});
-
-
-start.addEventListener('click', updateBoardState);
+start.addEventListener('click', startGame);
 //start.addEventListener('click',stopGame);
 //stop.addEventListener('click',stopInt);
 //reset.addEventListener('click',resetBoard);
-
-
