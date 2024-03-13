@@ -1,22 +1,17 @@
 //debugger;
 
-/*let row = prompt("Podaj ilość wierszy");
-let column = prompt("Podaj ilość column");*/
-
-let rows =10;
-let columns =10;
+let rows = 10;
+let columns = 10;
 
 let start = document.querySelector(".start");
 let board = document.querySelector(".board");
-let reset = document.querySelector(".reset");
-let stop = document.querySelector(".stop");
 let divBoard = [];
-let Interval = "";
+
 
 
 //Aktualizuje plasze
-function updateBoardState(y,x) {
-  let newBoardUpdate = []
+function updateBoardState() {
+  let newBoardUpdate = [];
   for (let y = 0; y < rows; y++) {
     newBoardUpdate.push([]);
     for (let x = 0; x < columns; x++) {
@@ -24,36 +19,33 @@ function updateBoardState(y,x) {
       const isAlive = div.classList.contains('zywa');
       const liveNeighbors = countNeighbors(x, y);
 
+
       if (isAlive && (liveNeighbors === 3 || liveNeighbors === 2)) {
-        newBoardUpdate[y][x] === 1;
+        newBoardUpdate[y][x] = 1;
+      } else if (!isAlive && liveNeighbors === 3) {
+        newBoardUpdate[y][x] = 1;
       } else {
-        newBoardUpdate[y][x] === 0;
+        newBoardUpdate[y][x] = 0;
       }
-
-      if (!isAlive && (liveNeighbors === 3)) {
-        newBoardUpdate[y][x] = 1
-      } else
-        newBoardUpdate[y][x] = 0
-    }
-
-    for (let y = 0; y < rows; y++) {
-      for (let x = 0; x < columns; x++) {
-
-        const div = newBoardUpdate[y][x]
-
-        if (newBoardUpdate[y][x] === 1) {
-          div.classList.add('zywa')
-        } else {
-          div.classList.remove('zywa')
-        }
-      }
-
     }
   }
+
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < columns; x++) {
+      const div = divBoard[y][x];
+      if (newBoardUpdate[y][x] === 1) {
+        div.classList.add('zywa');
+      } else {
+        div.classList.remove('zywa');
+      }
+      }
+
+    }
+
 }
 
 //Rozpoczyna gre
-/*function startGame() {
+function startGame() {
     Interval= setInterval(updateBoardState, 1000)
 }
 
@@ -61,11 +53,12 @@ function stopGame(){
   clearInterval(Interval);
 }
 
-*/
+
 
 
 function pressStart() {
   board.innerHTML = '';
+  divBoard = []; // Resetowanie tablicy divBoard
   for (let i = 0; i < rows; i++) {
     let row = document.createElement('div');
     row.classList.add('row');
@@ -75,7 +68,7 @@ function pressStart() {
       div.style.border = '1px solid black';
       div.style.width = '20px';
       div.style.height = '20px';
-      div.style.backgroundColor = Math.random() < 0.7 ? 0 : 'black'; //czarna zywa
+      div.style.backgroundColor = Math.random() < 0.7 ? 0 : 'black'; // czarna zywa
       if (div.style.backgroundColor === 'black') {
         div.classList.add('zywa');
       } else {
@@ -90,7 +83,7 @@ function pressStart() {
 
 }
 
-function countNeighbors(x, y, board) {
+function countNeighbors(x, y) {
   let liveNeighbors = 0;
   for (let i = -1; i <= 1; i++) {
     for (let j = -1; j <= 1; j++) {
@@ -110,7 +103,6 @@ function countNeighbors(x, y, board) {
 }
 
 
-
 start.addEventListener('click', pressStart);
 start.addEventListener('click', function () {
   let newBoard = [];
@@ -123,6 +115,7 @@ start.addEventListener('click', function () {
       } else {
         newBoard[y][x] = 0;
       }
+      
     }
   }
 
