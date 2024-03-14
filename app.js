@@ -4,7 +4,7 @@ let rows = prompt("Podaj ilość wierszy");
 let columns = prompt("Podaj ilość column");
 
 let intervalId = null;
-  
+
 
 let start = document.querySelector(".start");
 let stop = document.querySelector(".stop");
