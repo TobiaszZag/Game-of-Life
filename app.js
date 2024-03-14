@@ -26,7 +26,7 @@ function updateBoardState() {
       const liveNeighbors = countNeighbors(x, y);
 
 //Rules
-      if (isAlive && (liveNeighbors < 2 || liveNeighbors > 3)) {
+      if (isAlive && (liveNeighbors === 2 || liveNeighbors === 3)) {
         newBoardUpdate[y][x] = 0;
       } else if (!isAlive && liveNeighbors === 3) {
         newBoardUpdate[y][x] = 1;
