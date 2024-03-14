@@ -45,7 +45,7 @@ function updateBoardState() {
       } else {
         div.classList.remove('alive');
       }
-    }
+      }
   }
 }
 
