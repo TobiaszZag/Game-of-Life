@@ -11,24 +11,25 @@ let intervalId = null;
 
 let start = document.querySelector(".start");
 let stop = document.querySelector(".stop");
+let reset = document.querySelector(".reset")
 let board = document.querySelector(".board");
 let divBoard = [];
 
-//Aktualizuje plasze
+//Update board
 function updateBoardState() {
   let newBoardUpdate = [];
   for (let y = 0; y < rows; y++) {
     newBoardUpdate.push([]);
     for (let x = 0; x < columns; x++) {
       const div = divBoard[y][x];
-      const isAlive = div.classList.contains('zywa');
+      const isAlive = div.classList.contains('alive');
       const liveNeighbors = countNeighbors(x, y);
 
-
+//Rules
       if (isAlive && (liveNeighbors < 2 || liveNeighbors > 3)) {
         newBoardUpdate[y][x] = 0;
       } else if (!isAlive && liveNeighbors === 3) {
-        newBoardUpdate[y][x] = 1; 
+        newBoardUpdate[y][x] = 1;
       } else {
         newBoardUpdate[y][x] = isAlive ? 1 : 0;
       }
@@ -38,25 +39,30 @@ function updateBoardState() {
 
   for (let y = 0; y < rows; y++) {
     for (let x = 0; x < columns; x++) {
-      const div = divBoard[y][x];
+      let div = divBoard[y][x];
       if (newBoardUpdate[y][x] === 1) {
-        div.classList.add('zywa');
+        div.classList.add('alive');
       } else {
-        div.classList.remove('zywa');
-        div.classList.add('niezywa');
+        div.classList.remove('alive');
+        div.classList.add('notAlive');
       }
     }
   }
 }
 
-//Rozpoczyna gre
+//Start game
 function startGame() {
   pressStart()
-  intervalId = setInterval(updateBoardState, 1000);
+  intervalId = setInterval(updateBoardState, 2000);
 }
 
+//Stop game
 function stopGame(){
   clearInterval(intervalId);
+}
+//Reset game
+function resetBoard(){
+  board.innerHTML = ""
 }
 
 
@@ -74,7 +80,7 @@ function pressStart() {
       div.style.height = '20px';
 
 
-      let newClass = Math.random() < 0.6 ? 'zywa' : 'niezywa';
+      let newClass = Math.random() < 0.6 ? 'alive' : 'notAlive';
       div.classList.add(newClass);
 
 
@@ -91,27 +97,27 @@ function pressStart() {
     board.appendChild(row);
   }
 }
-//Zlicza sąsiadów
+//Count Neighbors
 function countNeighbors(x, y) {
   let liveNeighbors = 0;
   for (let i = -1; i <= 1; i++) {
     for (let j = -1; j <= 1; j++) {
       const neighborX = x + i;
       const neighborY = y + j;
-      if (i === 0 && j === 0) continue;// Pomijamy bieżącą komórkę
+      if (i === 0 && j === 0) continue;// Skip
       if (neighborX >= 0 && neighborX < columns && neighborY >= 0 && neighborY < rows) {
         const neighborDiv = divBoard[neighborY][neighborX];
-        if (neighborDiv.classList.contains('zywa')) {
+        if (neighborDiv.classList.contains('alive')) {
           liveNeighbors++;
         }
       }
     }
   }
-  console.log("Liczba sąsiadów (" + x + ", " + y + "): " + liveNeighbors);
+  console.log("Count liveNeighbors (" + x + ", " + y + "): " + liveNeighbors);
   return liveNeighbors;
 }
 
-
+//Button
 start.addEventListener('click', startGame);
 stop.addEventListener('click',stopGame);
-//reset.addEventListener('click',resetBoard);
+reset.addEventListener('click',resetBoard);
