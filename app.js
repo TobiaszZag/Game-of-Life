@@ -1,11 +1,8 @@
 //debugger;
 
-/*let row = prompt("Podaj ilość wierszy");
-let column = prompt("Podaj ilość column");*/
+let rows = prompt("Podaj ilość wierszy");
+let columns = prompt("Podaj ilość column");
 
-
-let rows = 10;
-let columns = 10;
 let intervalId = null;
 
 
@@ -52,7 +49,7 @@ function updateBoardState() {
 //Start game
 function startGame() {
   pressStart()
-  intervalId = setInterval(updateBoardState, 500);
+  intervalId = setInterval(updateBoardState, 100);
 }
 
 //Stop game
