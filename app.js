@@ -31,11 +31,11 @@ function updateBoardState() {
       } else if (!isAlive && liveNeighbors === 3) {
         newBoardUpdate[y][x] = 1;
       } else {
-        newBoardUpdate[y][x] = isAlive ? 1 : 0;
+        newBoardUpdate[y][x] = 0;
       }
     }
   }
-debugger
+//debugger
 
   for (let y = 0; y < rows; y++) {
     for (let x = 0; x < columns; x++) {
