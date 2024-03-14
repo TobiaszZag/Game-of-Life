@@ -1,13 +1,10 @@
 //debugger;
 
-/*let row = prompt("Podaj ilość wierszy");
-let column = prompt("Podaj ilość column");*/
+let rows = prompt("Podaj ilość wierszy");
+let columns = prompt("Podaj ilość column");
 
-
-let rows = 10;
-let columns = 10;
 let intervalId = null;
-
+  
 
 let start = document.querySelector(".start");
 let stop = document.querySelector(".stop");
@@ -27,15 +24,15 @@ function updateBoardState() {
 
 //Rules
       if (isAlive && (liveNeighbors === 2 || liveNeighbors === 3)) {
-        newBoardUpdate[y][x] = 0;
+        newBoardUpdate[y][x] = 1;
       } else if (!isAlive && liveNeighbors === 3) {
         newBoardUpdate[y][x] = 1;
       } else {
-        newBoardUpdate[y][x] = isAlive ? 1 : 0;
+        newBoardUpdate[y][x] = 0;
       }
     }
   }
-
+//debugger
 
   for (let y = 0; y < rows; y++) {
     for (let x = 0; x < columns; x++) {
@@ -44,16 +41,15 @@ function updateBoardState() {
         div.classList.add('alive');
       } else {
         div.classList.remove('alive');
-        div.classList.add('notAlive');
       }
-    }
+      }
   }
 }
 
 //Start game
 function startGame() {
   pressStart()
-  intervalId = setInterval(updateBoardState, 2000);
+  intervalId = setInterval(updateBoardState, 100);
 }
 
 //Stop game
@@ -80,7 +76,7 @@ function pressStart() {
       div.style.height = '20px';
 
 
-      let newClass = Math.random() < 0.6 ? 'alive' : 'notAlive';
+      let newClass = Math.random() < 0.5 ? 'alive' : 'notAlive';
       div.classList.add(newClass);
 
 
@@ -97,6 +93,7 @@ function pressStart() {
     board.appendChild(row);
   }
 }
+
 //Count Neighbors
 function countNeighbors(x, y) {
   let liveNeighbors = 0;
