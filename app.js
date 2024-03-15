@@ -49,7 +49,7 @@ function updateBoardState() {
 //Start game
 function startGame() {
   pressStart()
-  intervalId = setInterval(updateBoardState, 100);
+  intervalId = setInterval(updateBoardState, 500);
 }
 
 //Stop game
@@ -74,6 +74,7 @@ function pressStart() {
       div.style.border = '1px solid black';
       div.style.width = '20px';
       div.style.height = '20px';
+      div.style.borderRadius = "5px"
 
 
       let newClass = Math.random() < 0.5 ? 'alive' : 'notAlive';
