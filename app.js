@@ -1,31 +1,29 @@
 //debugger;
 
-/*let row = prompt("Podaj ilość wierszy");
-let column = prompt("Podaj ilość column");*/
+let rows = prompt("Podaj ilość wierszy");
+let columns = prompt("Podaj ilość column");
 
-
-let rows = 10;
-let columns = 10;
 let intervalId = null;
 
 
 let start = document.querySelector(".start");
 let stop = document.querySelector(".stop");
+let reset = document.querySelector(".reset")
 let board = document.querySelector(".board");
 let divBoard = [];
 
-//Aktualizuje plasze
+//Update board
 function updateBoardState() {
   let newBoardUpdate = [];
   for (let y = 0; y < rows; y++) {
     newBoardUpdate.push([]);
     for (let x = 0; x < columns; x++) {
       const div = divBoard[y][x];
-      const isAlive = div.classList.contains('zywa');
+      const isAlive = div.classList.contains('alive');
       const liveNeighbors = countNeighbors(x, y);
 
-
-      if (isAlive && (liveNeighbors === 3 || liveNeighbors === 2)) {
+//Rules
+      if (isAlive && (liveNeighbors === 2 || liveNeighbors === 3)) {
         newBoardUpdate[y][x] = 1;
       } else if (!isAlive && liveNeighbors === 3) {
         newBoardUpdate[y][x] = 1;
@@ -34,25 +32,33 @@ function updateBoardState() {
       }
     }
   }
-
+//debugger
 
   for (let y = 0; y < rows; y++) {
     for (let x = 0; x < columns; x++) {
-      const div = divBoard[y][x];
+      let div = divBoard[y][x];
       if (newBoardUpdate[y][x] === 1) {
-        div.classList.add('zywa');
+        div.classList.add('alive');
       } else {
-        div.classList.remove('zywa');
+        div.classList.remove('alive');
       }
-    }
+      }
   }
 }
 
-//Rozpoczyna gre
+//Start game
 function startGame() {
+  pressStart()
+  intervalId = setInterval(updateBoardState, 500);
+}
+
+//Stop game
+function stopGame(){
   clearInterval(intervalId);
-  pressStart();
-  intervalId = setInterval(updateBoardState, 1000);
+}
+//Reset game
+function resetBoard(){
+  board.innerHTML = ""
 }
 
 function pressStart() {
@@ -68,12 +74,19 @@ function pressStart() {
       div.style.border = '1px solid black';
       div.style.width = '20px';
       div.style.height = '20px';
-      div.style.backgroundColor = Math.random() < 0.7 ? 'black' : 0;
+      div.style.borderRadius = "5px"
+
+
+      let newClass = Math.random() < 0.5 ? 'alive' : 'notAlive';
+      div.classList.add(newClass);
+
+
+     /* div.style.backgroundColor = Math.random() < 0.6 ? 'black' : 0;
       if (div.style.backgroundColor === 'black') {
         div.classList.add('zywa');
       } else {
         div.classList.add('niezywa');
-      }
+      }*/
       div.style.margin = '2px';
       row.appendChild(div);
       divBoard[i].push(div);
@@ -82,26 +95,26 @@ function pressStart() {
   }
 }
 
+//Count Neighbors
 function countNeighbors(x, y) {
   let liveNeighbors = 0;
   for (let i = -1; i <= 1; i++) {
     for (let j = -1; j <= 1; j++) {
       const neighborX = x + i;
       const neighborY = y + j;
-      if (i === 0 && j === 0) continue;// Pomijamy bieżącą komórkę
+      if (i === 0 && j === 0) continue;// Skip
       if (neighborX >= 0 && neighborX < columns && neighborY >= 0 && neighborY < rows) {
         const neighborDiv = divBoard[neighborY][neighborX];
-        if (neighborDiv.classList.contains('zywa')) {
+        if (neighborDiv.classList.contains('alive')) {
           liveNeighbors++;
         }
       }
     }
   }
-  console.log("Liczba sąsiadów (" + x + ", " + y + "): " + liveNeighbors);
+  console.log("Count liveNeighbors (" + x + ", " + y + "): " + liveNeighbors);
   return liveNeighbors;
 }
 
 start.addEventListener('click', startGame);
-//start.addEventListener('click',stopGame);
-//stop.addEventListener('click',stopInt);
-//reset.addEventListener('click',resetBoard);
+stop.addEventListener('click',stopGame);
+reset.addEventListener('click',resetBoard);
