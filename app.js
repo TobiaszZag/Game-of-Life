@@ -2,7 +2,6 @@
 
 let rows = prompt("Podaj ilość wierszy");
 let columns = prompt("Podaj ilość column");
-
 let intervalId = null;
 
 
@@ -82,7 +81,7 @@ function pressStart() {
 
       let newClass = Math.random() < 0.5 ? 'alive' : 'notAlive';
       div.classList.add(newClass);
-      
+      //div.addEventListener('click', toggleCellState);
       div.style.margin = '2px';
       row.appendChild(div);
       divBoard[i].push(div);
@@ -122,3 +121,6 @@ function toggleCellState(event) {
 start.addEventListener('click', startGame);
 stop.addEventListener('click',stopGame);
 reset.addEventListener('click',resetBoard);
+//marking.addEventListener('click',)
+//pixelGun.addEventListener('click',)
+
