@@ -51,7 +51,7 @@ function updateBoardState() {
 
 //Start game
 function startGame() {
-  createBoard()
+  //createBoard()
   intervalId = setInterval(updateBoardState, 500);
 }
 
@@ -121,12 +121,33 @@ function toggleCellState(event) {
 
 
 //Random function
-function randElements(){
-  let newClass = Math.random() < 0.5 ? 'alive' : 'notAlive';
+function randElements() {
+  divBoard = [];
+  for (let i = 0; i < rows; i++) {
+    let row = document.createElement('div');
+    row.classList.add('row');
+    divBoard.push([]);
+    for (let j = 0; j < columns; j++) {
+
+      let div = document.createElement('div');
+      div.style.border = '1px solid black';
+      div.style.width = '20px';
+      div.style.height = '20px';
+      div.style.borderRadius = "5px"
+
+
+      //let newClass = Math.random() < 0.5 ? 'alive' : 'notAlive';
+      //div.classList.add(newClass);
+      //div.addEventListener('click', toggleCellState);
+      div.style.margin = '2px';
+      row.appendChild(div);
+      divBoard[i].push(div);
+    }
+    board.appendChild(row);
+  }
 }
 
 //Button
-
 start.addEventListener('click', startGame);
 stop.addEventListener('click',stopGame);
 reset.addEventListener('click',resetBoard);
