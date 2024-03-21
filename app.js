@@ -136,7 +136,7 @@ function randElements() {
 start.addEventListener('click', startGame);
 stop.addEventListener('click',stopGame);
 reset.addEventListener('click',resetBoard);
-//marking.addEventListener('click',toggleCellState)
+marking.addEventListener('click',toggleCellState)
 //pixelGun.addEventListener('click',)
 randomDiv.addEventListener('click',randElements)
 createBoard()
