@@ -12,6 +12,7 @@ let board = document.querySelector(".board");
 let pixelGun = document.querySelector(".pixelGun")
 let marking = document.querySelector(".marking")
 let random = document.querySelector(".random")
+let createBoardIndex = document.querySelector(".createBoard")
 let divBoard = [];
 
 //Update board
@@ -80,8 +81,8 @@ function createBoard() {
       div.style.borderRadius = "5px"
 
 
-      let newClass = Math.random() < 0.5 ? 'alive' : 'notAlive';
-      div.classList.add(newClass);
+      //let newClass = Math.random() < 0.5 ? 'alive' : 'notAlive';
+      //div.classList.add(newClass);
       //div.addEventListener('click', toggleCellState);
       div.style.margin = '2px';
       row.appendChild(div);
@@ -119,11 +120,20 @@ function toggleCellState(event) {
 }
 
 
+//Random function
+function randElements(){
+  let newClass = Math.random() < 0.5 ? 'alive' : 'notAlive';
+}
+
 //Button
+
 start.addEventListener('click', startGame);
 stop.addEventListener('click',stopGame);
 reset.addEventListener('click',resetBoard);
 //marking.addEventListener('click',)
 //pixelGun.addEventListener('click',)
-//random.addEventListener('click')
+//random.addEventListener('click',randElements)
+createBoardIndex.addEventListener('click',createBoard)
+
+
 
