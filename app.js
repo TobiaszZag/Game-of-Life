@@ -82,14 +82,7 @@ function pressStart() {
 
       let newClass = Math.random() < 0.5 ? 'alive' : 'notAlive';
       div.classList.add(newClass);
-
-
-     /* div.style.backgroundColor = Math.random() < 0.6 ? 'black' : 0;
-      if (div.style.backgroundColor === 'black') {
-        div.classList.add('zywa');
-      } else {
-        div.classList.add('niezywa');
-      }*/
+      
       div.style.margin = '2px';
       row.appendChild(div);
       divBoard[i].push(div);
