@@ -50,7 +50,6 @@ function updateBoardState() {
 
 //Start game
 function startGame() {
-  //createBoard()
   intervalId = setInterval(updateBoardState, 500);
 }
 
@@ -60,7 +59,7 @@ function stopGame(){
 }
 //Reset game
 function resetBoard(){
-  board.innerHTML = ""
+  board = createBoard()
 }
 
 
