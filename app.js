@@ -10,6 +10,9 @@ let start = document.querySelector(".start");
 let stop = document.querySelector(".stop");
 let reset = document.querySelector(".reset")
 let board = document.querySelector(".board");
+let pixelGun = document.querySelector(".pixelGun")
+let marking = document.querySelector(".marking")
+let random = document.querySelector(".random")
 let divBoard = [];
 
 //Update board
@@ -113,6 +116,13 @@ function countNeighbors(x, y) {
   }
   console.log("Count liveNeighbors (" + x + ", " + y + "): " + liveNeighbors);
   return liveNeighbors;
+}
+
+
+//Function target
+function toggleCellState(event) {
+  let div = event.target;
+  div.classList.toggle('alive');
 }
 
 //Button
