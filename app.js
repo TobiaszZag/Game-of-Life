@@ -125,4 +125,5 @@ stop.addEventListener('click',stopGame);
 reset.addEventListener('click',resetBoard);
 //marking.addEventListener('click',)
 //pixelGun.addEventListener('click',)
+//random.addEventListener('click')
 
