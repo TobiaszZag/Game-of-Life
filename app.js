@@ -12,7 +12,6 @@ let board = document.querySelector(".board");
 let pixelGun = document.querySelector(".pixelGun")
 let marking = document.querySelector(".marking")
 let randomDiv = document.querySelector(".random")
-let createBoardIndex = document.querySelector(".createBoard")
 let divBoard = [];
 
 //Update board
@@ -35,7 +34,7 @@ function updateBoardState() {
       }
     }
   }
-//debugger
+
 
   for (let y = 0; y < rows; y++) {
     for (let x = 0; x < columns; x++) {
@@ -79,10 +78,6 @@ function createBoard() {
       div.style.width = '20px';
       div.style.height = '20px';
       div.style.borderRadius = "5px"
-
-
-      //let newClass = Math.random() < 0.5 ? 'alive' : 'notAlive';
-      //div.classList.add(newClass);
       //div.addEventListener('click', toggleCellState);
       div.style.margin = '2px';
       row.appendChild(div);
@@ -113,11 +108,18 @@ function countNeighbors(x, y) {
 }
 
 
-//Function target
-function toggleCellState(event) {
-  let div = event.target;
-  div.classList.toggle('alive');
+//Function marking
+function toggleCellState() {
+  for (let i = 0; i < rows; i++) {
+    for (let j = 0; j < columns; j++) {
+      let div = divBoard[i][j];
+      div.classList.toggle('alive');
+    }
+  }
 }
+
+
+
 
 
 //Random function
@@ -135,10 +137,9 @@ function randElements() {
 start.addEventListener('click', startGame);
 stop.addEventListener('click',stopGame);
 reset.addEventListener('click',resetBoard);
-//marking.addEventListener('click',)
+//marking.addEventListener('click',toggleCellState)
 //pixelGun.addEventListener('click',)
 randomDiv.addEventListener('click',randElements)
-createBoardIndex.addEventListener('click',createBoard)
-
+createBoard()
 
 
