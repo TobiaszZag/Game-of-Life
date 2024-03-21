@@ -59,7 +59,7 @@ function stopGame(){
 }
 //Reset game
 function resetBoard(){
-  board = createBoard()
+  board = createBoard();
 }
 
 
