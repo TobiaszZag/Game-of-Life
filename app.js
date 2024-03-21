@@ -122,29 +122,15 @@ function toggleCellState(event) {
 
 //Random function
 function randElements() {
-  divBoard = [];
   for (let i = 0; i < rows; i++) {
-    let row = document.createElement('div');
-    row.classList.add('row');
-    divBoard.push([]);
     for (let j = 0; j < columns; j++) {
-
-      let div = document.createElement('div');
-      div.style.border = '1px solid black';
-      div.style.width = '20px';
-      div.style.height = '20px';
-      div.style.borderRadius = "5px"
+      let div = divBoard[i][j];
       let newClass = Math.random() < 0.5 ? 'alive' : 'notAlive';
+      div.className = '';
       div.classList.add(newClass);
-      //div.addEventListener('click', toggleCellState);
-      div.style.margin = '2px';
-      row.appendChild(div);
-      divBoard[i].push(div);
     }
-    board.appendChild(row);
   }
-}
-
+  }
 //Button
 start.addEventListener('click', startGame);
 stop.addEventListener('click',stopGame);
