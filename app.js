@@ -11,7 +11,7 @@ let reset = document.querySelector(".reset")
 let board = document.querySelector(".board");
 let pixelGun = document.querySelector(".pixelGun")
 let marking = document.querySelector(".marking")
-let random = document.querySelector(".random")
+let randomDiv = document.querySelector(".random")
 let createBoardIndex = document.querySelector(".createBoard")
 let divBoard = [];
 
@@ -134,10 +134,8 @@ function randElements() {
       div.style.width = '20px';
       div.style.height = '20px';
       div.style.borderRadius = "5px"
-
-
-      //let newClass = Math.random() < 0.5 ? 'alive' : 'notAlive';
-      //div.classList.add(newClass);
+      let newClass = Math.random() < 0.5 ? 'alive' : 'notAlive';
+      div.classList.add(newClass);
       //div.addEventListener('click', toggleCellState);
       div.style.margin = '2px';
       row.appendChild(div);
@@ -153,7 +151,7 @@ stop.addEventListener('click',stopGame);
 reset.addEventListener('click',resetBoard);
 //marking.addEventListener('click',)
 //pixelGun.addEventListener('click',)
-//random.addEventListener('click',randElements)
+randomDiv.addEventListener('click',randElements)
 createBoardIndex.addEventListener('click',createBoard)
 
 
