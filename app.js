@@ -2,7 +2,6 @@
 
 let rows = prompt("Podaj ilość wierszy");
 let columns = prompt("Podaj ilość column");
-
 let intervalId = null;
 
 
@@ -10,6 +9,9 @@ let start = document.querySelector(".start");
 let stop = document.querySelector(".stop");
 let reset = document.querySelector(".reset")
 let board = document.querySelector(".board");
+let pixelGun = document.querySelector(".pixelGun")
+let marking = document.querySelector(".marking")
+let random = document.querySelector(".random")
 let divBoard = [];
 
 //Update board
@@ -48,7 +50,7 @@ function updateBoardState() {
 
 //Start game
 function startGame() {
-  pressStart()
+  createBoard()
   intervalId = setInterval(updateBoardState, 500);
 }
 
@@ -61,7 +63,8 @@ function resetBoard(){
   board.innerHTML = ""
 }
 
-function pressStart() {
+
+function createBoard() {
   board.innerHTML = '';
   divBoard = [];
   for (let i = 0; i < rows; i++) {
@@ -79,14 +82,7 @@ function pressStart() {
 
       let newClass = Math.random() < 0.5 ? 'alive' : 'notAlive';
       div.classList.add(newClass);
-
-
-     /* div.style.backgroundColor = Math.random() < 0.6 ? 'black' : 0;
-      if (div.style.backgroundColor === 'black') {
-        div.classList.add('zywa');
-      } else {
-        div.classList.add('niezywa');
-      }*/
+      //div.addEventListener('click', toggleCellState);
       div.style.margin = '2px';
       row.appendChild(div);
       divBoard[i].push(div);
@@ -116,7 +112,17 @@ function countNeighbors(x, y) {
 }
 
 
+//Function target
+function toggleCellState(event) {
+  let div = event.target;
+  div.classList.toggle('alive');
+}
+
+
 //Button
 start.addEventListener('click', startGame);
 stop.addEventListener('click',stopGame);
 reset.addEventListener('click',resetBoard);
+//marking.addEventListener('click',)
+//pixelGun.addEventListener('click',)
+
