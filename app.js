@@ -76,7 +76,6 @@ function createBoard() {
       div.style.width = '20px';
       div.style.height = '20px';
       div.style.borderRadius = "5px"
-      //div.addEventListener('click', toggleCellState);
       div.style.margin = '2px';
       row.appendChild(div);
       divBoard[i].push(div);
@@ -106,7 +105,7 @@ function countNeighbors(x, y) {
 }
 
 
-// Funkcja marking
+// Function marking
 function toggleCellState() {
   for (let i = 0; i < rows; i++) {
     for (let j = 0; j < columns; j++) {
@@ -138,14 +137,31 @@ function randElements() {
       div.classList.add(newClass);
     }
   }
-  }
-//Button
+}
+
+//GliderGun
+function GliderGun() {
+  const Coordinates = [
+    [5, 1], [6, 1], [5, 2], [6, 2],
+    [5, 11], [6, 11], [7, 11], [4, 12], [8, 12], [3, 13], [9, 13], [3, 14], [9, 14], [6, 15], [4, 16], [8, 16], [5, 17], [6, 17], [7, 17], [6, 18],
+    [3, 21], [4, 21], [5, 21], [3, 22], [4, 22], [5, 22], [2, 23], [6, 23], [1, 25], [2, 25], [6, 25], [7, 25], 
+    [3, 35], [4, 35], [3, 36], [4, 36] 
+  ];
+
+  for (let i = 0; i < Coordinates.length; i++) {
+    const x = Coordinates[i][0];
+    const y = Coordinates[i][1];
+    divBoard[y][x].classList.add('alive');
+  };
+}
+
+
+//Button 
 start.addEventListener('click', startGame);
-stop.addEventListener('click',stopGame);
-reset.addEventListener('click',resetBoard);
-marking.addEventListener('click',toggleCellState)
-//pixelGun.addEventListener('click',)
-randomDiv.addEventListener('click',randElements)
-createBoard()
-
-
+stop.addEventListener('click', stopGame);
+reset.addEventListener('click', resetBoard);
+marking.addEventListener('click', toggleCellState);
+randomDiv.addEventListener('click', randElements);
+pixelGun.addEventListener('click', GliderGun); 
+// Create board
+createBoard();
