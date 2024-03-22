@@ -1,17 +1,17 @@
 //debugger;
 
 let rows = prompt("Podaj ilość wierszy");
-let columns = prompt("Podaj ilość column");
+let columns = prompt("Podaj ilość kolumn");
 let intervalId = null;
 
 
 let start = document.querySelector(".start");
 let stop = document.querySelector(".stop");
-let reset = document.querySelector(".reset")
+let reset = document.querySelector(".reset");
 let board = document.querySelector(".board");
-let pixelGun = document.querySelector(".pixelGun")
-let marking = document.querySelector(".marking")
-let randomDiv = document.querySelector(".random")
+let pixelGun = document.querySelector(".pixelGun");
+let marking = document.querySelector(".marking");
+let randomDiv = document.querySelector(".random");
 let divBoard = [];
 
 //Update board
@@ -48,9 +48,9 @@ function updateBoardState() {
   }
 }
 
-//Start game
+// Start game
 function startGame() {
-  intervalId = setInterval(updateBoardState, 500);
+  intervalId = setInterval(updateBoardState, 50);
 }
 
 //Stop game
@@ -58,8 +58,8 @@ function stopGame(){
   clearInterval(intervalId);
 }
 //Reset game
-function resetBoard(){
-  board = createBoard();
+function resetBoard() {
+  createBoard();
 }
 
 
@@ -71,13 +71,11 @@ function createBoard() {
     row.classList.add('row');
     divBoard.push([]);
     for (let j = 0; j < columns; j++) {
-
       let div = document.createElement('div');
       div.style.border = '1px solid black';
       div.style.width = '20px';
       div.style.height = '20px';
       div.style.borderRadius = "5px"
-      //div.addEventListener('click', toggleCellState);
       div.style.margin = '2px';
       row.appendChild(div);
       divBoard[i].push(div);
@@ -106,12 +104,69 @@ function countNeighbors(x, y) {
   return liveNeighbors;
 }
 
+
+// Function marking
+function toggleCellState() {
+  for (let i = 0; i < rows; i++) {
+    for (let j = 0; j < columns; j++) {
+      let div = divBoard[i][j];
+      div.addEventListener('click', function() {
+        if (div.classList.contains('alive')) {
+          div.classList.remove('alive');
+        } else {
+          div.classList.add('alive');
+        }
+      });
+    }
+  }
+}
+
+
+
+
+
+
+
+//Random function
+function randElements() {
+  for (let i = 0; i < rows; i++) {
+    for (let j = 0; j < columns; j++) {
+      let div = divBoard[i][j];
+      let newClass = Math.random() < 0.5 ? 'alive' : 'notAlive';
+      div.className = '';
+      div.classList.add(newClass);
+    }
+  }
+}
+
+// GliderGun
+function GliderGun() {
+  if (rows < 50 || columns < 50) {
+    alert('Board is too small for Glider Gun');
+    return;
+  }
+
+  const Coordinates = [
+    [5, 1], [6, 1], [5, 2], [6, 2],
+    [5, 11], [6, 11], [7, 11], [4, 12], [8, 12], [3, 13], [9, 13], [3, 14], [9, 14], [6, 15], [4, 16], [8, 16], [5, 17], [6, 17], [7, 17], [6, 18],
+    [3, 21], [4, 21], [5, 21], [3, 22], [4, 22], [5, 22], [2, 23], [6, 23], [1, 25], [2, 25], [6, 25], [7, 25], 
+    [3, 35], [4, 35], [3, 36], [4, 36] 
+  ];
+
+  for (let i = 0; i < Coordinates.length; i++) {
+    const x = Coordinates[i][0];
+    const y = Coordinates[i][1];
+    divBoard[y][x].classList.add('alive');
+  }
+}
+
+
+//Button 
 start.addEventListener('click', startGame);
-stop.addEventListener('click',stopGame);
-reset.addEventListener('click',resetBoard);
-marking.addEventListener('click',toggleCellState)
-//pixelGun.addEventListener('click',)
-randomDiv.addEventListener('click',randElements)
-createBoard()
-
-
+stop.addEventListener('click', stopGame);
+reset.addEventListener('click', resetBoard);
+marking.addEventListener('click', toggleCellState);
+randomDiv.addEventListener('click', randElements);
+pixelGun.addEventListener('click', GliderGun); 
+// Create board
+createBoard();
