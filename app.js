@@ -2,7 +2,6 @@
 
 let rows = prompt("Podaj ilość wierszy");
 let columns = prompt("Podaj ilość column");
-
 let intervalId = null;
 
 
@@ -10,6 +9,9 @@ let start = document.querySelector(".start");
 let stop = document.querySelector(".stop");
 let reset = document.querySelector(".reset")
 let board = document.querySelector(".board");
+let pixelGun = document.querySelector(".pixelGun")
+let marking = document.querySelector(".marking")
+let randomDiv = document.querySelector(".random")
 let divBoard = [];
 
 //Update board
@@ -32,7 +34,7 @@ function updateBoardState() {
       }
     }
   }
-//debugger
+
 
   for (let y = 0; y < rows; y++) {
     for (let x = 0; x < columns; x++) {
@@ -48,7 +50,6 @@ function updateBoardState() {
 
 //Start game
 function startGame() {
-  pressStart()
   intervalId = setInterval(updateBoardState, 500);
 }
 
@@ -58,10 +59,11 @@ function stopGame(){
 }
 //Reset game
 function resetBoard(){
-  board.innerHTML = ""
+  board = createBoard();
 }
 
-function pressStart() {
+
+function createBoard() {
   board.innerHTML = '';
   divBoard = [];
   for (let i = 0; i < rows; i++) {
@@ -75,18 +77,7 @@ function pressStart() {
       div.style.width = '20px';
       div.style.height = '20px';
       div.style.borderRadius = "5px"
-
-
-      let newClass = Math.random() < 0.5 ? 'alive' : 'notAlive';
-      div.classList.add(newClass);
-
-
-     /* div.style.backgroundColor = Math.random() < 0.6 ? 'black' : 0;
-      if (div.style.backgroundColor === 'black') {
-        div.classList.add('zywa');
-      } else {
-        div.classList.add('niezywa');
-      }*/
+      //div.addEventListener('click', toggleCellState);
       div.style.margin = '2px';
       row.appendChild(div);
       divBoard[i].push(div);
@@ -118,3 +109,9 @@ function countNeighbors(x, y) {
 start.addEventListener('click', startGame);
 stop.addEventListener('click',stopGame);
 reset.addEventListener('click',resetBoard);
+marking.addEventListener('click',toggleCellState)
+//pixelGun.addEventListener('click',)
+randomDiv.addEventListener('click',randElements)
+createBoard()
+
+

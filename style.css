@@ -4,7 +4,6 @@
     justify-content: center;
     align-items: center;
   }
-
   html {
     height: 100%;
     margin: 0;
@@ -12,21 +11,6 @@
     justify-content: center;
     align-items: center;
   }
-
-.row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-
-html {
-    height: 100%;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 ::-moz-selection {
   background: #b3d4fc;
@@ -116,9 +100,9 @@ textarea {
 }
 
 @media print,
-  (-webkit-min-device-pixel-ratio: 1.25),
-  (min-resolution: 1.25dppx),
-  (min-resolution: 120dpi) {
+(-webkit-min-device-pixel-ratio: 1.25),
+(min-resolution: 1.25dppx),
+(min-resolution: 120dpi) {
 }
 
 
