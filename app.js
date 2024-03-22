@@ -107,15 +107,23 @@ function countNeighbors(x, y) {
 }
 
 
-//Function marking
+// Funkcja marking
 function toggleCellState() {
   for (let i = 0; i < rows; i++) {
     for (let j = 0; j < columns; j++) {
       let div = divBoard[i][j];
-      div.addEventListener('click',div.classList.add(Alive))
+      div.addEventListener('click', function() {
+        if (div.classList.contains('alive')) {
+          div.classList.remove('alive');
+        } else {
+          div.classList.add('alive');
+        }
+      });
     }
   }
 }
+
+
 
 
 
