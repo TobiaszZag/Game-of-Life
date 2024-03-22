@@ -48,9 +48,9 @@ function updateBoardState() {
   }
 }
 
-//Start game
+// Start game
 function startGame() {
-  intervalId = setInterval(updateBoardState, 500);
+  intervalId = setInterval(updateBoardState, 50);
 }
 
 //Stop game
@@ -71,7 +71,6 @@ function createBoard() {
     row.classList.add('row');
     divBoard.push([]);
     for (let j = 0; j < columns; j++) {
-
       let div = document.createElement('div');
       div.style.border = '1px solid black';
       div.style.width = '20px';
