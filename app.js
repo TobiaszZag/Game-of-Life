@@ -1,17 +1,17 @@
 //debugger;
 
 let rows = prompt("Podaj ilość wierszy");
-let columns = prompt("Podaj ilość column");
+let columns = prompt("Podaj ilość kolumn");
 let intervalId = null;
 
 
 let start = document.querySelector(".start");
 let stop = document.querySelector(".stop");
-let reset = document.querySelector(".reset")
+let reset = document.querySelector(".reset");
 let board = document.querySelector(".board");
-let pixelGun = document.querySelector(".pixelGun")
-let marking = document.querySelector(".marking")
-let randomDiv = document.querySelector(".random")
+let pixelGun = document.querySelector(".pixelGun");
+let marking = document.querySelector(".marking");
+let randomDiv = document.querySelector(".random");
 let divBoard = [];
 
 //Update board
@@ -139,8 +139,13 @@ function randElements() {
   }
 }
 
-//GliderGun
+// GliderGun
 function GliderGun() {
+  if (rows < 50 || columns < 50) {
+    alert('Board is too small for Glider Gun');
+    return;
+  }
+
   const Coordinates = [
     [5, 1], [6, 1], [5, 2], [6, 2],
     [5, 11], [6, 11], [7, 11], [4, 12], [8, 12], [3, 13], [9, 13], [3, 14], [9, 14], [6, 15], [4, 16], [8, 16], [5, 17], [6, 17], [7, 17], [6, 18],
@@ -152,7 +157,7 @@ function GliderGun() {
     const x = Coordinates[i][0];
     const y = Coordinates[i][1];
     divBoard[y][x].classList.add('alive');
-  };
+  }
 }
 
 
