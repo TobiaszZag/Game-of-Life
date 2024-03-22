@@ -58,8 +58,8 @@ function stopGame(){
   clearInterval(intervalId);
 }
 //Reset game
-function resetBoard(){
-  board = createBoard();
+function resetBoard() {
+  createBoard();
 }
 
 
