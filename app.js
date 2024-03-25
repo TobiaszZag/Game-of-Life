@@ -193,9 +193,6 @@ function GameOfLife() {
   this.init = init;
 }
 
-/*let game = new GameOfLife()
 
-game.init()
-*/
 
 
