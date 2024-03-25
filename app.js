@@ -1,4 +1,4 @@
-debugger;
+//debugger;
 
 function GameOfLife() {
 
@@ -193,9 +193,9 @@ function GameOfLife() {
   this.init = init;
 }
 
-let game = new GameOfLife()
+/*let game = new GameOfLife()
 
 game.init()
-
+*/
 
 
