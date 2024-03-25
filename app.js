@@ -1,6 +1,6 @@
 //debugger;
 
-function gameOfLife() {
+function GameOfLife() {
 
   let rows;
   let columns;
@@ -88,7 +88,7 @@ function gameOfLife() {
   }
 
 
-  function createBoard() {
+  function createBoard(){
     board.innerHTML = '';
     divBoard = [];
     for (let i = 0; i < rows; i++) {
@@ -189,19 +189,19 @@ function gameOfLife() {
     randomDiv.addEventListener('click', randElements);
     pixelGun.addEventListener('click', GliderGun);
   }
+
   this.init = init();
-  this.button = button();
-  this.createBoard = createBoard();
-  this.getElementHTML = getElementHTML();
-  this.boardPrompt = boardPrompt();
+  this.createBoard = createBoard()
   this.GliderGun = GliderGun();
   this.randElements = randElements();
   this.toggleCellState = toggleCellState();
-  this.countNeighbors = countNeighbors(x,y)
+  this.countNeighbors = countNeighbors()
   this.resetBoard = resetBoard();
   this.stopGame = stopGame();
   this.startGame = startGame();
   this.updateBoardState = updateBoardState();
+  this.getElementHTML =  getElementHTML();
+  this.boardPrompt = boardPrompt();
 }
 
 
